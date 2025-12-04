@@ -5,10 +5,6 @@ import edu.luc.etl.cs313.android.simplestopwatch.model.clock.ClockModel;
 import edu.luc.etl.cs313.android.simplestopwatch.model.clock.TickListener;
 import edu.luc.etl.cs313.android.simplestopwatch.model.time.TimeModel;
 
-/**
- * Unified mock dependency for timer tests.
- * Implements TimeModel, ClockModel, and StopwatchModelListener.
- */
 class UnifiedMockDependency implements TimeModel, ClockModel, StopwatchModelListener {
 
     private int timeValue = -1, stateId = -1;
@@ -45,7 +41,6 @@ class UnifiedMockDependency implements TimeModel, ClockModel, StopwatchModelList
         alarmSounding = false;
     }
 
-    // StopwatchModelListener implementation
     @Override
     public void onTimeUpdate(final int timeValue) {
         this.timeValue = timeValue;
@@ -56,7 +51,6 @@ class UnifiedMockDependency implements TimeModel, ClockModel, StopwatchModelList
         this.stateId = stateId;
     }
 
-    // ClockModel implementation
     @Override
     public void setTickListener(TickListener listener) {
         throw new UnsupportedOperationException();
@@ -72,7 +66,6 @@ class UnifiedMockDependency implements TimeModel, ClockModel, StopwatchModelList
         started = false;
     }
 
-    // TimeModel implementation
     @Override
     public void resetRuntime() {
         runningTime = 0;
@@ -80,13 +73,11 @@ class UnifiedMockDependency implements TimeModel, ClockModel, StopwatchModelList
 
     @Override
     public void incRuntime() {
-        // Increment up to 99
         if (runningTime < 99) {
             runningTime++;
         }
     }
 
-    // NEW: For timer countdown
     public void decRuntime() {
         if (runningTime > 0) {
             runningTime--;
@@ -102,7 +93,6 @@ class UnifiedMockDependency implements TimeModel, ClockModel, StopwatchModelList
         this.runningTime = time;
     }
 
-    // Mock methods for timer-specific actions
     public void playBeep() {
         beepPlayed = true;
     }

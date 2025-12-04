@@ -18,4 +18,8 @@
     <string name="LAP_RUNNING">Lap/Running</string>
     <string name="LAP_STOPPED">Lap/Stopped</string>
 
+    <!-- String  -->
+    <string name="INCREMENTING">Setting Time</string>
+    <string name="ALARM">ALARM!</string>
+
 </resources>
