@@ -1,0 +1,15 @@
+package edu.luc.etl.cs313.android.simplestopwatch.model.timer.state;
+
+public class StoppedState implements TimerState {
+    @Override
+    public void updateView() { }
+    @Override
+    public int getId() { return 0; }
+    @Override
+    public void onTick() { }
+    @Override
+    public void onStartStop() { }
+    @Override
+    public void onLapReset() { }
+
+}
