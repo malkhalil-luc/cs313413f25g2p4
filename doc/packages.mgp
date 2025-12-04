@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PackageAnalysis>
+    <Package name="edu.luc.etl.cs313.android.simplestopwatch.android"
+        x="16" y="24">
+        <DependencyLink destination="edu.luc.etl.cs313.android.simplestopwatch.model"/>
+        <DependencyLink destination="edu.luc.etl.cs313.android.simplestopwatch.common"/>
+    </Package>
+    <Package name="edu.luc.etl.cs313.android.simplestopwatch.model"
+        x="327" y="191">
+        <DependencyLink destination="edu.luc.etl.cs313.android.simplestopwatch.model.state"/>
+        <DependencyLink destination="edu.luc.etl.cs313.android.simplestopwatch.model.clock"/>
+        <DependencyLink destination="edu.luc.etl.cs313.android.simplestopwatch.model.time"/>
+        <DependencyLink destination="edu.luc.etl.cs313.android.simplestopwatch.common"/>
+    </Package>
+    <Package
+        name="edu.luc.etl.cs313.android.simplestopwatch.model.clock"
+        x="316" y="432"/>
+    <Package
+        name="edu.luc.etl.cs313.android.simplestopwatch.model.state"
+        x="610" y="499">
+        <DependencyLink destination="edu.luc.etl.cs313.android.simplestopwatch.model.clock"/>
+        <DependencyLink destination="edu.luc.etl.cs313.android.simplestopwatch.model.time"/>
+        <DependencyLink destination="edu.luc.etl.cs313.android.simplestopwatch.common"/>
+    </Package>
+    <Package name="edu.luc.etl.cs313.android.simplestopwatch.model.time"
+        x="610" y="23"/>
+    <Package name="edu.luc.etl.cs313.android.simplestopwatch.common"
+        x="16" y="504"/>
+</PackageAnalysis>

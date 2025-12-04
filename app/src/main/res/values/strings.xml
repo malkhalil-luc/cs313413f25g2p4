@@ -1,3 +1,21 @@
 <resources>
-    <string name="app_name">Timer Application</string>
+
+    <!-- app strings -->
+    <string name="app_name">edu.luc.etl.cs313.android.stopwatch</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">Loyola CS 313/413 Stopwatch</string>
+
+    <!-- view strings -->
+    <string name="startStop">Start/Stop</string>
+    <string name="resetLap">Reset/Lap</string>
+    <string name="minutes">00</string>
+    <string name="seconds">00</string>
+    <string name="colon">:</string>
+
+    <!-- model state display names -->
+    <string name="STOPPED">Stopped</string>
+    <string name="RUNNING">Running</string>
+    <string name="LAP_RUNNING">Lap/Running</string>
+    <string name="LAP_STOPPED">Lap/Stopped</string>
+
 </resources>
