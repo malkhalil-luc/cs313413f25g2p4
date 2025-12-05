@@ -17,21 +17,18 @@ public class DefaultStopwatchStateMachine implements StopwatchStateMachine {
     }
 
     private final TimeModel timeModel;
-
     private final ClockModel clockModel;
 
     /**
      * The internal state of this adapter component. Required for the State pattern.
      */
     private StopwatchState state;
-
     protected void setState(final StopwatchState state) {
         this.state = state;
         listener.onStateUpdate(state.getId());
     }
 
     private StopwatchModelListener listener;
-
     @Override
     public void setModelListener(final StopwatchModelListener listener) {
         this.listener = listener;
