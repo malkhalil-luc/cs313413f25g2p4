@@ -10,6 +10,7 @@ public class IncrementingState  implements TimerState{
     public IncrementingState( final TimerSMStateView sm) {
         this.sm = sm;
         this.ticksSinceStart = 0;
+
     }
     @Override
     public void updateView() {
