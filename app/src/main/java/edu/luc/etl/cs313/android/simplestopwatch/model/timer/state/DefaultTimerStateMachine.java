@@ -34,6 +34,11 @@ public class DefaultTimerStateMachine implements TimerStateMachine {
         listener.onTimeUpdate(timeModel.getRuntime());
     }
 
+    @Override
+    public void updateUILaptime() {
+
+    }
+
     private final TimerState STOPPED = new StoppedState(this);
     private TimerState INCREMENTING = new IncrementingState(this);
     private final TimerState RUNNING = new RunningState(this);
@@ -41,6 +46,17 @@ public class DefaultTimerStateMachine implements TimerStateMachine {
 
     @Override public void toRunningState()      { setState(RUNNING); }
     @Override public void toStoppedState()      { setState(STOPPED); }
+
+    @Override
+    public void toLapRunningState() {
+
+    }
+
+    @Override
+    public void toLapStoppedState() {
+
+    }
+
     @Override public void toIncrementingState() {
         INCREMENTING = new IncrementingState(this);  // Create new to reset tick counter
         setState(INCREMENTING);
@@ -51,11 +67,21 @@ public class DefaultTimerStateMachine implements TimerStateMachine {
     @Override public void actionReset()      { timeModel.resetRuntime(); actionUpdateView(); }
     @Override public void actionStart()      { clockModel.start(); }
     @Override public void actionStop()       { clockModel.stop(); }
-    @Override public void actionInc()        { timeModel.incRuntime(); actionUpdateView(); }
-    @Override public void actionDec()        {
 
-        if (timeModel instanceof edu.luc.etl.cs313.android.simplestopwatch.test.timer.UnifiedMockDependency) {
-            ((edu.luc.etl.cs313.android.simplestopwatch.test.timer.UnifiedMockDependency) timeModel).decRuntime();
+    @Override
+    public void actionLap() {
+
+    }
+
+    @Override public void actionInc()        { timeModel.incRuntime(); actionUpdateView(); }
+    @Override public void actionDec()
+    {
+        int currentTime = timeModel.getRuntime();
+        if (currentTime > 0) {
+            timeModel.resetRuntime();
+            for (int i = 0; i < currentTime - 1; i++) {
+                timeModel.incRuntime();
+            }
         }
         actionUpdateView();
     }
