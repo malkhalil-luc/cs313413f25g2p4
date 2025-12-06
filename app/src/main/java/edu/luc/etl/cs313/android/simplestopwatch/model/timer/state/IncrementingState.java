@@ -27,13 +27,20 @@ public class IncrementingState implements TimerState {
         // Reset the timeout counter since user pressed button
         ticksSinceStart = 0;
 
-        sm.actionInc();
+        //sm.actionInc();
 
         int currentTime = sm.getTime();
 
+        // prevent incrementing if already at 99
+        if (currentTime < MAX_TIME) {
+            sm.actionInc();
+            currentTime = sm.getTime();
+        }
         if (currentTime >= MAX_TIME) {
             // Reached max time, play beep and transition to running
+            sm.actionStop();
             sm.actionPlayBeep();
+            sm.actionStart();
             sm.toRunningState();
         } else {
             // Just update the view, don't recreate state
