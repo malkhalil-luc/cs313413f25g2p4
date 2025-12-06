@@ -1,19 +1,13 @@
 package edu.luc.etl.cs313.android.simplestopwatch.android;
 
 import android.app.Activity;
-import android.media.AudioManager;
-//import android.media.ToneGenerator; // will use media player instead
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
-
+import android.widget.Button;
 import android.media.MediaPlayer;
-import android.media.RingtoneManager;
-import android.net.Uri;
-
 import java.util.Locale;
-
 import edu.luc.etl.cs313.android.simplestopwatch.R;
 import edu.luc.etl.cs313.android.simplestopwatch.common.StopwatchModelListener;
 import edu.luc.etl.cs313.android.simplestopwatch.model.timer.ConcreteTimerModelFacade;
@@ -27,8 +21,7 @@ public class TimerAdapter extends Activity implements StopwatchModelListener {
     private static String TAG = "timer-android-activity";
 
     private TimerModelFacade model;
-    //private ToneGenerator toneGenerator; // rem
-    //private boolean alarmSounding = false; // rm
+
     private MediaPlayer beepPlayer;
     private MediaPlayer alarmPlayer;
 
@@ -46,17 +39,13 @@ public class TimerAdapter extends Activity implements StopwatchModelListener {
         model.setModelListener(this);
 
         // Initialize tone generator for beeps
-       // toneGenerator = new ToneGenerator(AudioManager.STREAM_NOTIFICATION, 100);
+
         try {
-            //Uri beepUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
             beepPlayer = MediaPlayer.create(getApplicationContext(),R.raw.beep ); //beepUri);
 
-            //Uri alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
             alarmPlayer = MediaPlayer.create(getApplicationContext(), R.raw.digital_alarm);
             alarmPlayer.setLooping(true);
 
-//            beepPlayer = MediaPlayer.create(getApplicationContext(), notificationUri);
-//            alarmPlayer = MediaPlayer.create(getApplicationContext(), notificationUri);
             if (alarmPlayer != null) {
                 alarmPlayer.setLooping(true);
             }
@@ -80,9 +69,7 @@ public class TimerAdapter extends Activity implements StopwatchModelListener {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-//        if (toneGenerator != null) { // rem
-//            toneGenerator.release();
-//        }
+
         if (beepPlayer != null) {
             beepPlayer.release();
             beepPlayer = null;
@@ -116,12 +103,16 @@ public class TimerAdapter extends Activity implements StopwatchModelListener {
             final TextView stateName = findViewById(R.id.stateName);
             stateName.setText(getString(stateId));
 
-            // Handle alarm state
-//            if (stateId == R.string.ALARM) {// rem
-//                startAlarm();
-//            } else {
-//                stopAlarm();
-//            }
+            final Button button = findViewById(R.id.timerButton);
+            if (stateId == R.string.STOPPED || stateId == R.string.INCREMENTING) {
+                button.setText("Increment");
+            } else if (stateId == R.string.RUNNING ) {
+                button.setText("Stop");
+            } else if ( stateId == R.string.ALARM){
+                button.setText("Reset");
+            }
+
+
             if (stateId == R.string.RUNNING) {
                 playBeep();
             } else if (stateId == R.string.ALARM) {
@@ -136,9 +127,7 @@ public class TimerAdapter extends Activity implements StopwatchModelListener {
      * Play a single beep (when timer starts)
      */
     private void playBeep() {
-//        if (toneGenerator != null) { // rem
-//            toneGenerator.startTone(ToneGenerator.TONE_PROP_BEEP, 200);
-//        }
+
         if (beepPlayer != null) {
             try {
                 if (beepPlayer.isPlaying()) {
@@ -157,20 +146,7 @@ public class TimerAdapter extends Activity implements StopwatchModelListener {
      * Start continuous alarm
      */
     private void startAlarm() {
-//        if (!alarmSounding && toneGenerator != null) { // rem
-//            alarmSounding = true;
-//            // Play alarm tone continuously
-//            new Thread(() -> {
-//                while (alarmSounding) {
-//                    toneGenerator.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 500);
-//                    try {
-//                        Thread.sleep(600);
-//                    } catch (InterruptedException e) {
-//                        break;
-//                    }
-//                }
-//            }).start();
-//        }
+
         if (alarmPlayer != null && !alarmPlayer.isPlaying()) {
             try {
                 alarmPlayer.start();
@@ -201,6 +177,7 @@ public class TimerAdapter extends Activity implements StopwatchModelListener {
 
     // Button click handler
     public void onButton(final View view) {
+
         model.onStartStop();
     }
 }
