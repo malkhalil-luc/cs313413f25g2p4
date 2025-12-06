@@ -60,6 +60,7 @@ public class IncrementingState implements TimerState {
         if (ticksSinceStart >= TIMEOUT_TICKS) {
             // 3 seconds elapsed without button press, transition to running
             sm.actionPlayBeep();
+            sm.actionStart();
             sm.toRunningState();
         }
     }
