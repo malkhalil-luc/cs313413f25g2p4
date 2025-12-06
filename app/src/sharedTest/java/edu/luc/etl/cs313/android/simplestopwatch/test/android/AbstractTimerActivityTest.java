@@ -148,15 +148,30 @@ public abstract class AbstractTimerActivityTest {
      * @throws Throwable
      */
     @Test
-    public void testActivityScenarioStopAlarm() throws Throwable {
-        getActivity().runOnUiThread(() -> {
-            // Set time to 1 second for quick test
-            assertTrue(getStartStopButton().performClick());
-            assertEquals(1, getDisplayedValue());
-        });
+    public void testActivityScenarioStopAlarm() throws Throwable {getActivity().runOnUiThread(() -> {
+        // Set time to 1 second for quick test
+        assertTrue(getStartStopButton().performClick());
+        assertEquals(1, getDisplayedValue());
+    });
 
-        // Wait for timeout + countdown
-        Thread.sleep(4500);
+        // Wait for timeout (3s) + countdown (1s) + buffer
+        Thread.sleep(3500);
+        runUiThreadTasks();
+
+        // Poll until timer reaches 0 (max 5 seconds)
+        long startTime = System.currentTimeMillis();
+        while (System.currentTimeMillis() - startTime < 5000) {
+            final int[] currentValue = {-1};
+            getActivity().runOnUiThread(() -> {
+                currentValue[0] = getDisplayedValue();
+            });
+            Thread.sleep(100);  // Small delay to let UI thread run
+
+            if (currentValue[0] == 0) {
+                break;  // Timer reached 0!
+            }
+        }
+
         runUiThreadTasks();
 
         getActivity().runOnUiThread(() -> {
@@ -236,18 +251,14 @@ public abstract class AbstractTimerActivityTest {
     }
 
     protected int getDisplayedValue() {
-        final TextView ts = getActivity().findViewById(R.id.seconds);
-        final TextView tm = getActivity().findViewById(R.id.minutes);
-        return SEC_PER_MIN * tvToInt(tm) + tvToInt(ts);
+        final TextView display = getActivity().findViewById(R.id.timerDisplay);
+        return tvToInt(display);
     }
 
     protected Button getStartStopButton() {
-        return getActivity().findViewById(R.id.startStop);
+        return getActivity().findViewById(R.id.timerButton);
     }
 
-    protected Button getResetLapButton() {
-        return getActivity().findViewById(R.id.resetLap);
-    }
 
     protected TextView getStateName() {
         return getActivity().findViewById(R.id.stateName);

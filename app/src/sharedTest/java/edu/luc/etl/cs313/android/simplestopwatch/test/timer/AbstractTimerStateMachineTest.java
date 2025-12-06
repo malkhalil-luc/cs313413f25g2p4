@@ -69,8 +69,8 @@ public abstract class AbstractTimerStateMachineTest {
 
         assertTimeEquals(5);
         assertEquals(R.string.INCREMENTING, dependency.getState());
-        assertFalse(dependency.isStarted());
-
+        //assertFalse(dependency.isStarted());
+        assertTrue(dependency.isStarted());
         onTickRepeat(3);
 
         assertEquals(R.string.RUNNING, dependency.getState());

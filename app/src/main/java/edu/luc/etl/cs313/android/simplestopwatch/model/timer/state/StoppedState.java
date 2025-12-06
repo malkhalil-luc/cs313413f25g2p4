@@ -17,7 +17,7 @@ public class StoppedState implements TimerState{
     @Override
     public void onStartStop() {
         sm.actionInc();
-        //sm.actionStart();
+        sm.actionStart();
         sm.toIncrementingState();
 
     }
