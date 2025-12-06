@@ -19,7 +19,7 @@
     <string name="LAP_STOPPED">Lap/Stopped</string>
 
     <!-- String  -->
-    <string name="INCREMENTING">Setting Time</string>
+    <string name="INCREMENTING">Incrementing</string>
     <string name="ALARM">ALARM!</string>
 
 </resources>
