@@ -3,7 +3,7 @@
     <!-- app strings -->
     <string name="app_name">edu.luc.etl.cs313.android.stopwatch</string>
     <string name="menu_settings">Settings</string>
-    <string name="title_activity_main">Loyola CS 313/413 Stopwatch</string>
+    <string name="title_activity_main">Loyola COMP 313/413 Timer</string>
 
     <!-- view strings -->
     <string name="startStop">Start/Stop</string>

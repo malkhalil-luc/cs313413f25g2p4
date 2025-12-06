@@ -6,33 +6,33 @@
               android:gravity="center"
               android:padding="16dp">
 
-<!-- State name display -->
-<TextView
-        android:id="@+id/stateName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/STOPPED"
-        android:textSize="24sp"
-        android:layout_marginBottom="32dp" />
+    <!-- State name display -->
+    <TextView
+            android:id="@+id/stateName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/STOPPED"
+            android:textSize="24sp"
+            android:layout_marginBottom="32dp" />
 
-<!-- Two-digit timer display -->
-<TextView
-        android:id="@+id/timerDisplay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="00"
-        android:textSize="96sp"
-        android:fontFamily="monospace"
-        android:layout_marginBottom="32dp" />
+    <!-- Two-digit timer display -->
+    <TextView
+            android:id="@+id/timerDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00"
+            android:textSize="96sp"
+            android:fontFamily="monospace"
+            android:layout_marginBottom="32dp" />
 
-<!-- Single button -->
-<Button
-        android:id="@+id/timerButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Press"
-        android:onClick="onButton"
-        android:textSize="24sp"
-        android:padding="16dp" />
+    <!-- Single button -->
+    <Button
+            android:id="@+id/timerButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Press"
+            android:onClick="onButton"
+            android:textSize="24sp"
+            android:padding="16dp" />
 
 </LinearLayout>
