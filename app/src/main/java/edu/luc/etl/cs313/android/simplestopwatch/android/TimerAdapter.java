@@ -48,10 +48,15 @@ public class TimerAdapter extends Activity implements StopwatchModelListener {
         // Initialize tone generator for beeps
        // toneGenerator = new ToneGenerator(AudioManager.STREAM_NOTIFICATION, 100);
         try {
-            Uri notificationUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+            //Uri beepUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+            beepPlayer = MediaPlayer.create(getApplicationContext(),R.raw.beep ); //beepUri);
 
-            beepPlayer = MediaPlayer.create(getApplicationContext(), notificationUri);
-            alarmPlayer = MediaPlayer.create(getApplicationContext(), notificationUri);
+            //Uri alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+            alarmPlayer = MediaPlayer.create(getApplicationContext(), R.raw.digital_alarm);
+            alarmPlayer.setLooping(true);
+
+//            beepPlayer = MediaPlayer.create(getApplicationContext(), notificationUri);
+//            alarmPlayer = MediaPlayer.create(getApplicationContext(), notificationUri);
             if (alarmPlayer != null) {
                 alarmPlayer.setLooping(true);
             }
